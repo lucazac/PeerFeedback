@@ -15,9 +15,12 @@ for riga in righe:
     dati.append([Giver] + Receiver)  # Aggiunge i dati alla lista
 
 # Creazione del DataFrame
-df = pd.DataFrame(dati, columns=["Giver", "Receiver1", "Receiver2"])
+df_input = pd.DataFrame(dati, columns=["Giver", "Receiver1", "Receiver2"])
 
-print(df)
 for i in range(len(righe)):
-    excluded_value = df.iloc[i]["Giver"]
-    print (excluded_value)
+    excluded_value = df_input.iloc[i]["Giver"]
+    random_value = random_element_exclude(df_input.iloc[:, 0], excluded_value)
+    print(random_value)
+    df_input.at[i, 'Receiver1_new'] = random_value  # Assegna il valore in posizione i-esima
+
+print(df_input)
